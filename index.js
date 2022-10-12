@@ -10,17 +10,13 @@ const getData = (url, method) => {
         return 'Please add API key from https://newsapi.org/';
       } else{
         const resoponseStatus=Response.status;
-        //we can check Response status here!
         return Response.json().then((data) => {
-          //after Response.json() it is too late to check, because we don't have status here
-          // const error=[errorData, Response.status]
           const respHandler = [data, resoponseStatus];
           return respHandler;
         });
       }
     })
     .catch((error) => {
-      //if fetch path is wrong this line will run
       throw new Error('something went worng ' + error);
     });
 };
@@ -28,7 +24,7 @@ const getData = (url, method) => {
 const sendRequest = () => {
   const method = 'GET';
   const url = `https://newsapi.org/v2/top-headlines?country=gb&apiKey=${key}`;
-  const receivedData = getData(url, { method: method }); //second should be object, not method itself //here status pending
+  const receivedData = getData(url, { method: method }); 
   return receivedData.then((data) => {
     return data;
   });
@@ -50,7 +46,6 @@ async function renderData() {
   }
   console.log(data);
 }
-
 
 const displayLoader=()=>{
     setTimeout(()=>{
